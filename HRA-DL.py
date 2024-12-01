@@ -133,10 +133,10 @@ def main(userData):
 	metadata = fetchMetadata(albumId, userData)
 	albumFolder = f"{metadata['data']['results']['artist']} - {metadata['data']['results']['title']}"
 	print(f"{albumFolder}\n")
-	albumFolderS = dirSetup(f"/content/drive/MyDrive/Hi-Res 4/HRA/{sanitizeFname(albumFolder)}")
+	albumFolderS = dirSetup(f"/content/drive/MyDrive/HRA/{sanitizeFname(albumFolder)}")
 	for tracks in [x for x in metadata['data']['results']['tracks']]:
-		preFname = f"/content/drive/MyDrive/Hi-Res 4/HRA/{sanitizeFname(albumFolder)}/{str(tracks['trackNumber']).zfill(2)}.flac"
-		postFname = f"/content/drive/MyDrive/Hi-Res 4/HRA/{sanitizeFname(albumFolder)}/{str(tracks['trackNumber']).zfill(2)}. {sanitizeFname(tracks['title'])}.flac"
+		preFname = f"/content/drive/MyDrive/HRA/{sanitizeFname(albumFolder)}/{str(tracks['trackNumber']).zfill(2)}.flac"
+		postFname = f"/content/drive/MyDrive/HRA/{sanitizeFname(albumFolder)}/{str(tracks['trackNumber']).zfill(2)}. {sanitizeFname(tracks['title'])}.flac"
 		fileSetup(preFname)
 		fileSetup(postFname)
 		fetchTrack(albumId, sanitizeFname(albumFolder), preFname, f"{tracks['format']} kHz FLAC", str(tracks['trackNumber']).zfill(2), tracks['title'], str(len([x for x in metadata['data']['results']['tracks']])).zfill(2), tracks['url'])
